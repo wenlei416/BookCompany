@@ -1,0 +1,66 @@
+﻿@model BookCompanyManagement.Models.BookDelivery
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookDelivery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryQuantily)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryQuantily)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryContact)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookDeliveryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

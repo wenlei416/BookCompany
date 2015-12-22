@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.PaperInstock>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paper.PaperBrand.PaperMill.PaperMillName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paper.PaperName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperMount)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrintShop.PrintShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paper.PaperBrand.PaperMill.PaperMillName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paper.PaperName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperMount)
+            </td>
+        </tr>
+    }
+
+</table>

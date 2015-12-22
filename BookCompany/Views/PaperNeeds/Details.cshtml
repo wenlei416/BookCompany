@@ -1,0 +1,83 @@
+﻿@model BookCompanyManagement.Models.PaperNeed
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PaperNeed</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paper.PaperName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paper.PaperName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperNeedMount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperNeedMount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperFormat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Need)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Need)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperWastage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperWastage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Technological)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Technological)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaperNeedId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

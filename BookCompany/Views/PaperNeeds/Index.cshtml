@@ -1,0 +1,79 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.PaperNeed>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paper.PaperName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PaperNeedMount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperFormat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Need)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperWastage)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Technological)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookPrintOrder.BookPrintOrderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paper.PaperName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperNeedMount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperFormat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Need)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperWastage)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Technological)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PaperNeedId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaperNeedId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaperNeedId })
+        </td>
+    </tr>
+}
+
+</table>

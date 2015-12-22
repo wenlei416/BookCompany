@@ -1,0 +1,57 @@
+﻿@model BookCompanyManagement.Models.PaperSpec
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PaperSpec</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperSpecName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperSpecName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperDescription)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaperSpecId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

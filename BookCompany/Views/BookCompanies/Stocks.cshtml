@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "库存情况";
+}
+
+<h2>书籍库存</h2>
+@{
+    //Html.RenderAction("", "BookInstocks");
+}
+<hr />
+
+<h2>纸张库存</h2>
+@{
+    Html.RenderAction("_PartialPagePaperInStock", "PaperInstocks");
+}
+<hr />
+
+<h2>正在印的书</h2>
+@{
+    //Html.RenderAction("", "BookPrintOrders");
+}
+<hr />
+
+<h2>正在买的纸</h2>
+@{
+    Html.RenderAction("_PartialPagePaperInOrder", "PaperMakingOrders");
+}
+
+
+

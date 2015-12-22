@@ -1,0 +1,34 @@
+﻿@model BookCompanyManagement.Models.PaperBrand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PaperBrand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperMill.PaperMillName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperMill.PaperMillName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperBrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperBrandName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaperBrandId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

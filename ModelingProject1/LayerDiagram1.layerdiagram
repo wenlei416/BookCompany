@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="453dd0b7-1306-4406-9f80-18d3e7a06e59" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="b02ffec2-612b-4e88-91f1-6537008c9ba6" name="Models">
+      <references>
+        <reference Id="c601a6ef-2da8-46e2-89a8-851d66875ea1" name="Models">
+          <ArtifactNode Label="Models" Category="CodeSchema_ProjectItem" Id="(Assembly=../BookCompany/BookCompanyManagement.csproj File=../BookCompany/Models/)">
+            <Category Ref="ProjectFolder" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=VerifyCodeViewModel)" Label="VerifyCodeViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ExternalLoginListViewModel)" Label="ExternalLoginListViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ExternalLoginConfirmationViewModel)" Label="ExternalLoginConfirmationViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ResetPasswordViewModel)" Label="ResetPasswordViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ForgotPasswordViewModel)" Label="ForgotPasswordViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=SendCodeViewModel)" Label="SendCodeViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=RegisterViewModel)" Label="RegisterViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=LoginViewModel)" Label="LoginViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ForgotViewModel)" Label="ForgotViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=Book)" Label="Book" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookCompany)" Label="BookCompany" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookDelivery)" Label="BookDelivery" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookDeliveryType)" Label="BookDeliveryType" Category="CodeSchema_Enum">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookEditon)" Label="BookEditon" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookInstock)" Label="BookInstock" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=BookPrintOrder)" Label="BookPrintOrder" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ApplicationUser)" Label="ApplicationUser" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ApplicationDbContext)" Label="ApplicationDbContext" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=Makeup)" Label="Makeup" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=MakeupType)" Label="MakeupType" Category="CodeSchema_Enum">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=AddPhoneNumberViewModel)" Label="AddPhoneNumberViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=VerifyPhoneNumberViewModel)" Label="VerifyPhoneNumberViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ChangePasswordViewModel)" Label="ChangePasswordViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=SetPasswordViewModel)" Label="SetPasswordViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=FactorViewModel)" Label="FactorViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ConfigureTwoFactorViewModel)" Label="ConfigureTwoFactorViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=ManageLoginsViewModel)" Label="ManageLoginsViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=IndexViewModel)" Label="IndexViewModel" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PageType)" Label="PageType" Category="CodeSchema_Enum">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=Paper)" Label="Paper" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperBrand)" Label="PaperBrand" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperInstock)" Label="PaperInstock" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperMakingOrder)" Label="PaperMakingOrder" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperMill)" Label="PaperMill" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperNeed)" Label="PaperNeed" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperOrderStatus)" Label="PaperOrderStatus" Category="CodeSchema_Enum">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PaperSpec)" Label="PaperSpec" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+          <ExpandedNode Id="(Assembly=BookCompanyManagement Namespace=BookCompanyManagement.Models Type=PrintShop)" Label="PrintShop" Category="CodeSchema_Class">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>

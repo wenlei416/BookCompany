@@ -1,0 +1,72 @@
+﻿@model BookCompanyManagement.Models.PaperSpec
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PaperSpec</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperSpecName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperSpecName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

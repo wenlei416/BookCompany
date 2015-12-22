@@ -1,0 +1,50 @@
+﻿@model BookCompanyManagement.Models.Paper
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paper</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperBrand.PaperBrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperBrand.PaperBrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperSpec.PaperSpecName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperSpec.PaperSpecName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaperId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

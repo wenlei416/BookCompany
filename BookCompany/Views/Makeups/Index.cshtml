@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.Makeup>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakeupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MakeupType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookPrintOrder.BookPrintOrderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakeupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakeupType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MakeupId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MakeupId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MakeupId })
+        </td>
+    </tr>
+}
+
+</table>

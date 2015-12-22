@@ -1,0 +1,42 @@
+﻿@model BookCompanyManagement.Models.BookCompany
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookCompany</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCompanyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCompanyDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookCompanyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

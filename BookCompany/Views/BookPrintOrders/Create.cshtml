@@ -1,0 +1,436 @@
+﻿@using BookCompanyManagement.Models
+@model BookCompanyManagement.Models.BookPrintOrder
+
+@{
+    ViewBag.Title = "创建印制单";
+}
+
+<h2>创建印制单</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>印单</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("BookCompanyId", "图书公司", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BookCompanyId", null, string.Empty, htmlAttributes: new { @class = "form-control", onChange = "onPrintNameChanged()" })
+                @Html.ValidationMessage("BookCompanyId", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("PrintShopId", "承印厂", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PrintShopId", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("PrintShopId", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("BookPrintOrderName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("BookPrintOrderName", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("BookPrintOrderName", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("CreateDateTime", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("CreateDateTime", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessage("CreateDateTime", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("BookEditonId", "书名", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BookId", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("BookEditonId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("BookEditonId", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("PrintNo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("PrintNo", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("PrintNo", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("BookPrintMount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("BookPrintMount", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("BookPrintMount", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("OrderStatus", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "订单状态")
+            <div class="col-md-10">
+                @Html.DropDownList("OrderStatus", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("OrderStatus", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("PageFormat", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("PageFormat", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("PageFormat", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("PageSize", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("PageSize", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("PageSize", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Printsheet", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("Printsheet", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Printsheet", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Bookbinding", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("Bookbinding", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Bookbinding", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Plasticpackage", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("Plasticpackage", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Plasticpackage", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="paperNeedDynamicWrapper">
+            <div class="row">
+                <h4>用纸</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].PageType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "项目")
+                    <div class="col-md-10">
+                        @Html.DropDownList("PageType", null, htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_0__PageType", @name = "PaperNeeds[0].PageType" })
+                        @Html.ValidationMessage("PaperNeeds[0].PageType", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].PaperId", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "纸张名称")
+                    <div class="col-md-10">
+                        @Html.DropDownList("PaperId", null, htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_0__PaperId", @name = "PaperNeeds[0].PaperId" })
+                        @Html.ValidationMessage("PaperNeeds[0].PaperId", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].PaperFormat", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "开纸")
+                    <div class="col-md-10">
+                        @Html.Editor("PaperNeeds[0].PaperFormat", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("PaperNeeds[0].PaperFormat", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].Need", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "用料")
+                    <div class="col-md-10">
+                        @Html.Editor("PaperNeeds[0].Need", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("PaperNeeds[0].Need", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].PaperWastage", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "加放")
+                    <div class="col-md-10">
+                        @Html.Editor("PaperNeeds[0].PaperWastage", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("PaperNeeds[0].PaperWastage", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].Technological", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "工艺")
+                    <div class="col-md-10">
+                        @Html.Editor("PaperNeeds[0].Technological", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("PaperNeeds[0].Technological", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PaperNeeds[0].PaperNeedMount", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "合计")
+                    <div class="col-md-10">
+                        @Html.Editor("PaperNeeds[0].PaperNeedMount", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("PaperNeeds[0].PaperNeedMount", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="postfix button dynamicRemove">减少</a>
+                        <a href="#" class="postfix button dynamicAdd">增加</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="makeupDynamicWrapper">
+            <div class="row">
+                <h4>拼版</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.Label("Makeups[0].MakeupType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "分类")
+                    <div class="col-md-10">
+                        @Html.DropDownList("MakeupType", EnumHelper.GetSelectList(typeof(MakeupType)), htmlAttributes: new { @class = "form-control", @id = "Makeups_0__MakeupType", @name = "Makeups[0].MakeupType" })
+                        @Html.ValidationMessage("Makeups[0].MakeupType", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Makeups[0].MakeupName", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "名称")
+                    <div class="col-md-10">
+                        @Html.Editor("Makeups[0].MakeupName", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("Makeups[0].MakeupName", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Makeups[0].Count", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "总数")
+                    <div class="col-md-10">
+                        @Html.Editor("Makeups[0].Count", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("Makeups[0].Count", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="postfix button dynamicRemove">减少</a>
+                        <a href="#" class="postfix button dynamicAdd">增加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>打包</h4>
+            <hr />
+            <div class="form-group">
+                @Html.Label("Normalpackage", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("Normalpackage", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("Normalpackage", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Railpackage", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("Railpackage", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("Railpackage", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="bookDeliveryDynamicWrapper">
+            <div class="row">
+                <h4>送货</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.Label("BookDeliverys[0].DeliveryType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "书")
+                    <div class="col-md-10">
+                        @Html.DropDownList("DeliveryType", EnumHelper.GetSelectList(typeof(BookDeliveryType)), htmlAttributes: new { @class = "form-control", @id = "BookDeliverys_0__DeliveryType", @name = "BookDeliverys[0].DeliveryType" })
+                        @Html.ValidationMessage("BookDeliverys[0].DeliveryType", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("BookDeliverys[0].DeliveryDate", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "送货时间")
+                    <div class="col-md-10">
+                        @Html.Editor("BookDeliverys[0].DeliveryDate", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessage("BookDeliverys[0].DeliveryDate", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("BookDeliverys[0].DeliveryQuantily", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "数量/本")
+                    <div class="col-md-10">
+                        @Html.Editor("BookDeliverys[0].DeliveryQuantily", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("BookDeliverys[0].DeliveryQuantily", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("BookDeliverys[0].DeliveryAddress", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "交货地点")
+                    <div class="col-md-10">
+                        @Html.Editor("BookDeliverys[0].DeliveryAddress", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("BookDeliverys[0].DeliveryAddress", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("BookDeliverys[0].DeliveryContact", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "联系人")
+                    <div class="col-md-10">
+                        @Html.Editor("BookDeliverys[0].DeliveryContact", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("BookDeliverys[0].DeliveryContact", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="postfix button dynamicRemove">减少</a>
+                        <a href="#" class="postfix button dynamicAdd">增加</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="创建" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/js")
+    @*<script src="~/Scripts/jquery.dynamic-rows.js" type="text/javascript"></script>*@
+    <script>
+        $(document).ready(function() {
+            $('.paperNeedDynamicWrapper').ssdDynamicRows();
+            $('.makeupDynamicWrapper').ssdDynamicRows();
+            $('.bookDeliveryDynamicWrapper').ssdDynamicRows();
+            //把今天设为默认创建日期
+            $('#CreateDateTime').val(initDateInputWtihToday());
+            $('#BookId').change(function() { ChangeBook(); });
+            $('#BookEditonId').change(function() { ChangeBookEditon(); });
+            $('#PrintShopId').change(function() { ChangePrintShop(); });
+
+        });
+
+
+        function onPrintNameChanged() {
+            "use strict";
+            $.get("/BookPrintOrders/OnPrintNameChanged", //+ $("#selectedRole").get(0).selectedIndex
+                function(data) {
+                    var companyname = $("#BookCompanyId").find("option:selected").text();
+                    $("#BookPrintOrderName").val(data + "  " + companyname);
+                });
+        }
+
+        function ChangeBook() {
+            var selectedValue = $('#BookId option:selected').val();
+            if ($.trim(selectedValue).length > 0) {
+                //console.log("BookId" + selectedValue);
+                GetBookEditions(selectedValue);
+            } else {
+                $('#BookEditonId').empty();
+                $('#BookEditonId').append($('<option></option>').val('').text('请选择'));
+            }
+            $('#PrintNo').val("");
+
+        }
+
+
+        function GetBookEditions(id) {
+            $.ajax({
+                url: '@Url.Action("GetBookEditionsByBookId", "BookEditons")',
+                data: { id: id },
+                type: 'post',
+                cache: false,
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.length > 0) {
+                        $('#BookEditonId').empty();
+                        $('#BookEditonId').append($('<option></option>').val('').text('请选择'));
+                        $.each(data, function(i, item) {
+                            $('#BookEditonId').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+                }
+            });
+        }
+
+        function ChangeBookEditon() {
+            var selectedValue = $('#BookEditonId option:selected').val();
+            if ($.trim(selectedValue).length > 0) {
+                //console.log("BookEditonId" + selectedValue);
+                GetBookEditionPrintNo(selectedValue);
+            }
+        }
+
+        function GetBookEditionPrintNo(id) {
+            //console.log(id);
+            $.ajax({
+                url: '@Url.Action("GetPrintNoByBookEditionId", "BookPrintOrders")',
+                data: { id: id },
+                type: 'post',
+                cache: false,
+                async: true,
+                dataType: 'text',
+                success: function(data) {
+                    //console.log(data);
+                    $('#PrintNo').val(data);
+                }
+            });
+        }
+
+        function ChangePrintShop() {
+            var selectedValue = $('#PrintShopId option:selected').val();
+            if ($.trim(selectedValue).length > 0) {
+                //console.log("PrintShopId" + selectedValue);
+                GetPapers(selectedValue);
+            }
+        }
+
+        function GetPapers(id) {
+            $.ajax({
+                url: '@Url.Action("GetPapersByPrintShopId", "PaperInstocks")',
+                data: { id: id },
+                type: 'post',
+                cache: false,
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var allRows = $('.paperNeedDynamicWrapper').children('.row');
+                    $.each(allRows, function (index, value) {
+                        var paperDropDownList = $(value).find("select[id$='__PaperId']");
+                        if (data.length > 0) {
+                            $(paperDropDownList).empty();
+                            $(paperDropDownList).append($('<option></option>').val('').text('请选择'));
+                            $.each(data, function(i, item) {
+                                $(paperDropDownList).append($('<option></option>').val(item.Key).text(item.Value));
+                            });
+                        }
+                    });
+
+
+
+                }
+            });
+        }
+
+
+    </script>
+}

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.BookPrintOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCompany.BookCompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookEditon.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrintOrderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrintMount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CopmleteDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageFormat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Printsheet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bookbinding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plasticpackage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Normalpackage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Railpackage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookCompany.BookCompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookEditon.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintShop.PrintShopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookPrintOrderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookPrintMount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CopmleteDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageFormat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printsheet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bookbinding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plasticpackage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Normalpackage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Railpackage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookPrintOrderId }) |
+            @Html.ActionLink("Details", "Details", new {id = item.BookPrintOrderId}) |
+            @Html.ActionLink("发货", "Complete", new { id = item.BookPrintOrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookPrintOrderId })
+        </td>
+    </tr>
+}
+
+</table>

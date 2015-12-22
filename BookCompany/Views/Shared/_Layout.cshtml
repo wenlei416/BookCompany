@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("图书公司管理系统", "Index", "BookCompanies", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("主页", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("库存情况", "Stocks", "BookCompanies")</li>
+                    <li>@Html.ActionLink("图书公司管理", "Index", "BookCompanies")</li>
+                    <li>@Html.ActionLink("图书管理", "Index", "Books")</li>
+                    <li>@Html.ActionLink("买纸订单管理", "Index", "PapermakingOrders")</li>
+                    <li>@Html.ActionLink("印书订单管理", "Index", "BookPrintOrders")</li>
+                    <li>@Html.ActionLink("印厂管理", "Index", "Printshops")</li>
+                    <li>@Html.ActionLink("书籍发送管理", "Index", "BookDeliveries")</li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            库存管理<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("纸张库存管理", "Index", "PaperInstocks")</li>
+                            <li>@Html.ActionLink("书籍库存管理", "Index", "BookInstocks")</li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            纸品管理<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("纸张管理", "Index", "Papers")</li>
+                            <li>@Html.ActionLink("造纸厂管理", "Index", "PaperMills")</li>
+                            <li>@Html.ActionLink("纸张品牌管理", "Index", "PaperBrands")</li>
+                            <li>@Html.ActionLink("纸张规格管理", "Index", "Paperspecs")</li>
+                        </ul>
+                    </li>
+
+                </ul>
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 图书公司管理工具</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

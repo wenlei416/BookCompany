@@ -1,0 +1,50 @@
+﻿@model BookCompanyManagement.Models.Makeup
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Makeup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPrintOrder.BookPrintOrderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeupType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeupType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MakeupId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

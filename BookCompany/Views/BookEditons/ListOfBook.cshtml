@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.BookEditon>
+@{
+    Layout = null;
+}
+<h4>版本信息</h4>
+
+<p>
+    @Html.ActionLink("增加新版本", "Create", new { id = ViewBag.ThisBookId })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Edtion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishingHouse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edtion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishingHouse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookPrice)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.BookEditonId }) 
+                @*|@Html.ActionLink("删除", "Delete", new { id = item.BookEditonId })*@
+            </td>
+        </tr>
+    }
+
+</table>

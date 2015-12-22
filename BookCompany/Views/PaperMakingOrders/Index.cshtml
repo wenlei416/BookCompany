@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.PaperMakingOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCompany.BookCompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paper.PaperName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperMakingOrderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperMount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CopmleteDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookCompany.BookCompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paper.PaperName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintShop.PrintShopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperMakingOrderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperMount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CopmleteDateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {id = item.PaperMakingOrderId}) |
+            @Html.ActionLink("Complete", "Complete", new { id = item.PaperMakingOrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaperMakingOrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaperMakingOrderId })
+        </td>
+    </tr>
+}
+
+</table>

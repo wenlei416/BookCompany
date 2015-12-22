@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.BookInstock>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookEditon.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookInstockNname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookMount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookEditon.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintShop.PrintShopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookInstockNname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookMount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookInstockId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookInstockId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookInstockId })
+        </td>
+    </tr>
+}
+
+</table>

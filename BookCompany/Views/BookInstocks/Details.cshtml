@@ -1,0 +1,50 @@
+﻿@model BookCompanyManagement.Models.BookInstock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookInstock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookEditon.BookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookEditon.BookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintShop.PrintShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookInstockNname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookInstockNname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookMount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookMount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookInstockId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

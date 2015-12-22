@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.PaperSpec>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperSpecName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperDescription)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperSpecName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperDescription)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PaperSpecId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaperSpecId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaperSpecId })
+        </td>
+    </tr>
+}
+
+</table>

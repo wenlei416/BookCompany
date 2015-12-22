@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.Book>
+
+@{
+    ViewBag.Title = "书籍列表";
+}
+
+<h2>书籍列表</h2>
+
+<p>
+    @Html.ActionLink("新增书籍", "Create","Books")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishingHouse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishingHouse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.BookId }) |
+            @Html.ActionLink("版本信息", "Details", new { id=item.BookId })
+            @* |@Html.ActionLink("删除", "Delete", new { id=item.BookId })*@
+        </td>
+    </tr>
+}
+
+</table>

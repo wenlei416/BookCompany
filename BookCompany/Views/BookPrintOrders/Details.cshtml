@@ -1,0 +1,146 @@
+﻿@model BookCompanyManagement.Models.BookPrintOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookPrintOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCompany.BookCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCompany.BookCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookEditon.BookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookEditon.BookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintShop.PrintShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPrintOrderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPrintOrderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPrintMount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPrintMount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CopmleteDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CopmleteDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageFormat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Printsheet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Printsheet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bookbinding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bookbinding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plasticpackage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plasticpackage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Normalpackage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Normalpackage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Railpackage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Railpackage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookPrintOrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

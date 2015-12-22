@@ -1,0 +1,50 @@
+﻿@model BookCompanyManagement.Models.PaperInstock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PaperInstock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Paper.PaperName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paper.PaperName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintShop.PrintShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperInstockNname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperInstockNname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaperMount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaperMount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaperInstockId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

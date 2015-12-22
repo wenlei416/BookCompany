@@ -1,0 +1,21 @@
+﻿@using System.Web.Mvc.Html
+@model BookCompanyManagement.Models.PaperMill
+
+@{
+    ViewBag.Title = "造纸厂信息";
+}
+
+<h2>@Html.DisplayFor(model => model.PaperMillName)</h2>
+<p>
+    @Html.ActionLink("新增纸张", "CreateforMill", "Papers", new { id = Model.PaperMillId }, "")
+</p>
+
+@{
+    Html.RenderAction("_PartialPageBrandofMill","PaperBrands",new {id=Model.PaperMillId});
+}
+<p>
+    @Html.ActionLink("修改", "Edit", new {id = Model.PaperMillId}) |
+    @Html.ActionLink("返回", "Index")
+</p>
+
+

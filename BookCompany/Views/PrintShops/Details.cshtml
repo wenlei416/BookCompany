@@ -1,0 +1,41 @@
+﻿@model BookCompanyManagement.Models.PrintShop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.PrintShopName)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.PrintShopDescription)</h4>
+    <hr />
+    <h4>纸张库存</h4>
+
+    <table class="table">
+        <tr>
+            <th>
+                PaperName
+            </th>
+            <th>
+                PaperMount
+            </th>
+        </tr>
+
+        @foreach (var item in Model.PaperInstcoks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paper.PaperName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperMount)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PrintShopId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
