@@ -4,19 +4,14 @@ using BookCompanyManagement.Models;
 
 namespace BookCompanyManagement.DAL.Abstract
 {
-    public interface IPapermillRepository:IDisposable
+    public interface IPapermillRepository:IRepository<PaperMill>
     {
-        void DeleteByPrimaryKey(int papermillId);
 
-        void Insert(PaperMill papermill);
 
-        PaperMill SelectByPrimaryKey(int papermillId);
+        PaperMill GetById(int papermillId);
 
-        void Update(PaperMill papermill);
 
-        IEnumerable<PaperMill> SelectPapermill();
 
-        void Save();
 
     }
 }

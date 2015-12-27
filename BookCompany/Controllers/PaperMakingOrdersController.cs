@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
 using BookCompanyManagement.Services;
+using BookCompanyManagement.Services.Interface;
 using Ninject.Infrastructure.Language;
 
 namespace BookCompanyManagement.Controllers
@@ -17,11 +18,13 @@ namespace BookCompanyManagement.Controllers
     {
         private readonly BcContext _db = new BcContext();
         private readonly PaperInstockServices _paperInstcokServices = new PaperInstockServices();
+        private readonly IPaperMakingOrderServices _paperMakingOrderServices=new PaperMakingOrderServices();
 
         // GET: PaperMakingOrders
         public ActionResult Index()
         {
-            var papermakingOrder = _db.PapermakingOrder.Include(p => p.BookCompany).Include(p => p.Paper).Include(p => p.PrintShop);
+            //var papermakingOrder = _db.PapermakingOrder.Include(p => p.BookCompany).Include(p => p.Paper).Include(p => p.PrintShop);
+            var papermakingOrder = _paperMakingOrderServices.GetAll().AsQueryable().Include(p => p.BookCompany).Include(p => p.Paper).Include(p => p.PrintShop);
             return View(papermakingOrder.ToList());
         }
 
@@ -32,7 +35,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PaperMakingOrder paperMakingOrder = _db.PapermakingOrder.Find(id);
+            PaperMakingOrder paperMakingOrder = _paperMakingOrderServices.GetById(id); //_db.PapermakingOrder.Find(id);
             if (paperMakingOrder == null)
             {
                 return HttpNotFound();

@@ -7,18 +7,8 @@ using BookCompanyManagement.Models;
 
 namespace BookCompanyManagement.DAL.Abstract
 {
-    interface IPapermakingOrderRepository
+    internal interface IPapermakingOrderRepository : IRepository<PaperMakingOrder>
     {
-        void DeleteByPrimaryKey(int papermakingOrderId);
-
-        void Insert(PaperMakingOrder papermakingOrder);
-
-        PaperMakingOrder SelectByPrimaryKey(int papermakingOrderId);
-
-        void Update(PaperMakingOrder papermakingOrder);
-
-        IEnumerable<PaperMakingOrder> SelectPapermakingOrder();
-
-        void Save();
+        PaperMakingOrder GetById(int? papermakingOrderId);
     }
 }
