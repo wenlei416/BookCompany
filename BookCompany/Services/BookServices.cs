@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BookCompanyManagement.DAL;
+using BookCompanyManagement.DAL.Abstract;
 using BookCompanyManagement.Migrations;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Services
 {
-    public class BookServices
+    public class BookServices:IBookServices
     {
-        private readonly BcContext _db = new BcContext();
+        private readonly IBookRepository _bookRepository=new BookRepository();
 
         public int AddNewBook(Book book)
         {
-            var b=_db.Books.Add(book);
-            _db.SaveChanges();
-            return b.BookId;
+            _bookRepository.Create(book);
+            return book.BookId;
         }
     }
 }

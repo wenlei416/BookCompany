@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BookCompanyManagement.Models.BookInstock>
+
+@{
+    Layout = null;
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintShop.PrintShopName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.BookEditon.Book.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookEditon.Edtion)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.BookMount)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrintShop.PrintShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookEditon.Book.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookEditon.Edtion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookMount)
+            </td>
+
+        </tr>
+    }
+
+</table>

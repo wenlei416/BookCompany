@@ -13,12 +13,12 @@ namespace BookCompanyManagement.Controllers
 {
     public class BookInstocksController : Controller
     {
-        private BcContext db = new BcContext();
+        private readonly BcContext _db = new BcContext();
 
         // GET: BookInstocks
         public ActionResult Index()
         {
-            var bookInstocks = db.BookInstocks.Include(b => b.BookEditon).Include(b => b.PrintShop);
+            var bookInstocks = _db.BookInstocks.Include(b => b.BookEditon).Include(b => b.PrintShop);
             return View(bookInstocks.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookInstock bookInstock = db.BookInstocks.Find(id);
+            BookInstock bookInstock = _db.BookInstocks.Find(id);
             if (bookInstock == null)
             {
                 return HttpNotFound();
@@ -40,8 +40,8 @@ namespace BookCompanyManagement.Controllers
         // GET: BookInstocks/Create
         public ActionResult Create()
         {
-            ViewBag.BookEditonId = new SelectList(db.BookEditons, "BookEditonId", "BookName");
-            ViewBag.PrintShopId = new SelectList(db.Printshop, "PrintShopId", "PrintShopName");
+            ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName");
+            ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName");
             return View();
         }
 
@@ -54,13 +54,13 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.BookInstocks.Add(bookInstock);
-                db.SaveChanges();
+                _db.BookInstocks.Add(bookInstock);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookEditonId = new SelectList(db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
-            ViewBag.PrintShopId = new SelectList(db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
+            ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
+            ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
             return View(bookInstock);
         }
 
@@ -71,13 +71,13 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookInstock bookInstock = db.BookInstocks.Find(id);
+            BookInstock bookInstock = _db.BookInstocks.Find(id);
             if (bookInstock == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BookEditonId = new SelectList(db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
-            ViewBag.PrintShopId = new SelectList(db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
+            ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
+            ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
             return View(bookInstock);
         }
 
@@ -90,12 +90,12 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bookInstock).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(bookInstock).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BookEditonId = new SelectList(db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
-            ViewBag.PrintShopId = new SelectList(db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
+            ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookInstock.BookEditonId);
+            ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookInstock.PrintShopId);
             return View(bookInstock);
         }
 
@@ -106,7 +106,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookInstock bookInstock = db.BookInstocks.Find(id);
+            BookInstock bookInstock = _db.BookInstocks.Find(id);
             if (bookInstock == null)
             {
                 return HttpNotFound();
@@ -119,9 +119,9 @@ namespace BookCompanyManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BookInstock bookInstock = db.BookInstocks.Find(id);
-            db.BookInstocks.Remove(bookInstock);
-            db.SaveChanges();
+            BookInstock bookInstock = _db.BookInstocks.Find(id);
+            _db.BookInstocks.Remove(bookInstock);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -129,9 +129,15 @@ namespace BookCompanyManagement.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public PartialViewResult _PartialPageBookInstocks()
+        {
+            var bookInstocks = _db.BookInstocks.Include(b => b.BookEditon).Include(b => b.PrintShop);
+            return PartialView(bookInstocks.ToList());
         }
     }
 }

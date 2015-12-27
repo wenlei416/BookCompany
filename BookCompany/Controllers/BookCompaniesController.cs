@@ -8,17 +8,26 @@ using System.Web;
 using System.Web.Mvc;
 using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Controllers
 {
     public class BookCompaniesController : Controller
     {
         private readonly BcContext _db = new BcContext();
+        private readonly IBookCompanyServices _bookCompanyServices;
+
+        public BookCompaniesController()
+        {
+            _bookCompanyServices = new BookCompanyServices();
+        }
 
         // GET: BookCompanies
         public ActionResult Index()
         {
-            return View(_db.BookCompany.ToList());
+            return View(_bookCompanyServices.GetAll());
+            //return View(_db.BookCompany.ToList());
         }
 
         // GET: BookCompanies/Details/5
@@ -28,7 +37,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookCompany bookCompany = _db.BookCompany.Find(id);
+            BookCompany bookCompany = _bookCompanyServices.GetById(id);//_db.BookCompany.Find(id);
             if (bookCompany == null)
             {
                 return HttpNotFound();
@@ -43,16 +52,15 @@ namespace BookCompanyManagement.Controllers
         }
 
         // POST: BookCompanies/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BookCompanyId,BookCompanyName,BookCompanyDescription,IsDeleted")] BookCompany bookCompany)
         {
             if (ModelState.IsValid)
             {
-                _db.BookCompany.Add(bookCompany);
-                _db.SaveChanges();
+                _bookCompanyServices.Create(bookCompany);
+                //_db.BookCompany.Add(bookCompany);
+                //_db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +74,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookCompany bookCompany = _db.BookCompany.Find(id);
+            BookCompany bookCompany = _bookCompanyServices.GetById(id);//_db.BookCompany.Find(id);
             if (bookCompany == null)
             {
                 return HttpNotFound();
@@ -75,16 +83,15 @@ namespace BookCompanyManagement.Controllers
         }
 
         // POST: BookCompanies/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BookCompanyId,BookCompanyName,BookCompanyDescription,IsDeleted")] BookCompany bookCompany)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(bookCompany).State = EntityState.Modified;
-                _db.SaveChanges();
+                _bookCompanyServices.Update(bookCompany);
+                //_db.Entry(bookCompany).State = EntityState.Modified;
+                //_db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(bookCompany);
@@ -97,7 +104,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookCompany bookCompany = _db.BookCompany.Find(id);
+            BookCompany bookCompany = _bookCompanyServices.GetById(id);//_db.BookCompany.Find(id);
             if (bookCompany == null)
             {
                 return HttpNotFound();
@@ -110,9 +117,10 @@ namespace BookCompanyManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BookCompany bookCompany = _db.BookCompany.Find(id);
-            _db.BookCompany.Remove(bookCompany);
-            _db.SaveChanges();
+            _bookCompanyServices.Delete(id);
+            //BookCompany bookCompany = _bookCompanyServices.GetById(id);// _db.BookCompany.Find(id);
+            //_db.BookCompany.Remove(bookCompany);
+            //_db.SaveChanges();
             return RedirectToAction("Index");
         }
 
