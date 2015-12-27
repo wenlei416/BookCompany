@@ -180,11 +180,13 @@
     <Compile Include="Controllers\PapersController.cs" />
     <Compile Include="Controllers\PaperSpecsController.cs" />
     <Compile Include="Controllers\PrintShopsController.cs" />
+    <Compile Include="DAL\Abstract\IBookCompanyRepository.cs" />
     <Compile Include="DAL\Abstract\IBookRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermakingOrderRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermillRepository.cs" />
     <Compile Include="DAL\Abstract\IRepository.cs" />
     <Compile Include="DAL\BCContext.cs" />
+    <Compile Include="DAL\BookCompanyRepository.cs" />
     <Compile Include="DAL\BookRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\PapermakingOrderRepository.cs" />

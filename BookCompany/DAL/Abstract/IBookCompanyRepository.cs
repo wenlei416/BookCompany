@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCompanyManagement.Models;
 
-namespace BookCompanyManagement.Services.Interface
+namespace BookCompanyManagement.DAL.Abstract
 {
-    interface IBookServices
+    interface IBookCompanyRepository : IRepository<BookCompany>
     {
-         int AddNewBook(Book book);
+        BookCompany GetById(int bookCompanyId);
     }
 }

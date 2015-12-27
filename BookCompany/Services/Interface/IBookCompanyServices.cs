@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BookCompanyManagement.Models;
 
 namespace BookCompanyManagement.Services.Interface
@@ -15,9 +11,7 @@ namespace BookCompanyManagement.Services.Interface
 
         void Delete(int bookCompanId);
 
-        bool IsExists(int bookCompanId);
-
-        BookCompany GetById(int? bookCompanId);
+        BookCompany GetById(int bookCompanId);
 
         IEnumerable<BookCompany> GetAll();
 
