@@ -8,14 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Controllers
 {
     public class BookEditonsController : Controller
     {
-        //todo 直接访问db改成通过service来
-        private readonly BcContext _db = new BcContext();
-
+        //private readonly BcContext _db = new BcContext();
+        private readonly IBookEditonServices _bookEditonServices=new BookEditonServices();
 
         // GET: BookEditons/Create/2
         // 这里的id是对应的bookid
@@ -24,12 +25,12 @@ namespace BookCompanyManagement.Controllers
             //todo 把id传递给页面，应该有其他更好的方法来传递
             ViewBag.Bookinfo = id;
             var bookEditon = new BookEditon();
-            var book = _db.Books.Find(id);
+            var book = _bookEditonServices.GetById(id);//_db.Books.Find(id);
             //ViewBag.BookId = new SelectList(_db.Books, "BookId", "BookName", id);
             if (id != null)
             {
                 //todo 存在风险id对应的book不存在
-                var editons = _db.BookEditons.Count(b => b.BookId == id);
+                var editons = _bookEditonServices.GetEditionCountByBookId(id);//_db.BookEditons.Count(b => b.BookId == id);
                 bookEditon.Edtion = DateTime.Today.Year + "年" + DateTime.Today.Month + "月" + (editons + 1) + "版";
                 bookEditon.BookName = book.BookName;
                 bookEditon.ISBN = book.ISBN;
@@ -47,8 +48,9 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.BookEditons.Add(bookEditon);
-                _db.SaveChanges();
+                _bookEditonServices.Create(bookEditon);
+                //_db.BookEditons.Add(bookEditon);
+                //_db.SaveChanges();
                 return RedirectToAction("Details", "Books", new { id = bookEditon.BookId });
             }
 
@@ -63,7 +65,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookEditon bookEditon = _db.BookEditons.Find(id);
+            BookEditon bookEditon = _bookEditonServices.GetById(id);//_db.BookEditons.Find(id);
             if (bookEditon == null)
             {
                 return HttpNotFound();
@@ -79,8 +81,9 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(bookEditon).State = EntityState.Modified;
-                _db.SaveChanges();
+                _bookEditonServices.Update(bookEditon);
+                //_db.Entry(bookEditon).State = EntityState.Modified;
+                //_db.SaveChanges();
                 return RedirectToAction("Details", "Books", new { id = bookEditon.BookId });
             }
             //ViewBag.BookId = new SelectList(_db.Books, "BookId", "BookName", bookEditon.BookId);
@@ -91,20 +94,21 @@ namespace BookCompanyManagement.Controllers
         //这里的id是bookid
         public ActionResult ListOfBook(int? id)
         {
-            var bookEditons = _db.BookEditons.Include(b => b.Book).Where(b => b.BookId == id);
+            var bookEditons = _bookEditonServices.GetAll().AsQueryable().Include(b => b.Book).Where(b => b.BookId == id);
+            //var bookEditons = _db.BookEditons.Include(b => b.Book).Where(b => b.BookId == id);
             ViewBag.ThisBookId = id;
             return View(bookEditons.ToList());
         }
 
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        _db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         #region 暂时用不到的功能
         // GET: BookEditons/Delete/5
@@ -114,7 +118,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookEditon bookEditon = _db.BookEditons.Find(id);
+            BookEditon bookEditon = _bookEditonServices.GetById(id);//_db.BookEditons.Find(id);
             if (bookEditon == null)
             {
                 return HttpNotFound();
@@ -127,9 +131,10 @@ namespace BookCompanyManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BookEditon bookEditon = _db.BookEditons.Find(id);
-            _db.BookEditons.Remove(bookEditon);
-            _db.SaveChanges();
+            _bookEditonServices.Delete(id);
+            //BookEditon bookEditon = _db.BookEditons.Find(id);
+            //_db.BookEditons.Remove(bookEditon);
+            //_db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -140,7 +145,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookEditon bookEditon = _db.BookEditons.Find(id);
+            BookEditon bookEditon = _bookEditonServices.GetById(id);//_db.BookEditons.Find(id);
             if (bookEditon == null)
             {
                 return HttpNotFound();
@@ -156,15 +161,14 @@ namespace BookCompanyManagement.Controllers
         //    return View(bookEditons.ToList());
         //}
         #endregion
-
-        [HttpPost]
+       
         // POST: BookEditions/GetBookEditionsByBookId/5
-
+        [HttpPost]
         public ActionResult GetBookEditionsByBookId(int id)
         {
             List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
 
-            var bookEditions = _db.BookEditons.Where(p => p.BookId == id);
+            var bookEditions = _bookEditonServices.GetAll().Where(p => p.BookId == id);//_db.BookEditons.Where(p => p.BookId == id);
 
             if (bookEditions.Any())
             {

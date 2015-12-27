@@ -6,19 +6,22 @@ using System.Web.Mvc;
 using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
 using BookCompanyManagement.Services;
+using BookCompanyManagement.Services.Interface;
 using BookCompanyManagement.ViewModels;
 
 namespace BookCompanyManagement.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly BcContext _db = new BcContext();
-        readonly BookServices _bookServices=new BookServices();
+        private readonly IBookServices _bookServices=new BookServices();
+        private readonly IBookEditonServices _bookEditonServices=new BookEditonServices();
 
         // GET: Books
         public ActionResult Index()
         {
-            return View(_db.Books.ToList());
+            return View(_bookServices.GetAll());
+
+            //return View(_db.Books.ToList());
         }
 
         // GET: Books/Details/5
@@ -28,7 +31,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = _db.Books.Find(id);
+            Book book = _bookServices.GetById(id);//_db.Books.Find(id);
             if (book == null)
             {
                 return HttpNotFound();
@@ -61,7 +64,7 @@ namespace BookCompanyManagement.Controllers
                     ISBN = newBookCreateVm.ISBN,
                     PublishingHouse=newBookCreateVm.PublishingHouse
                 };
-                var bookid=_bookServices.AddNewBook(book);
+                var bookid=_bookServices.CreateReturnId(book);
                 BookEditon bookEditon=new BookEditon()
                 {
                     BookName = newBookCreateVm.BookName,
@@ -71,8 +74,9 @@ namespace BookCompanyManagement.Controllers
                     Edtion = newBookCreateVm.Edtion,
                     BookId = bookid
                 };
-                _db.BookEditons.Add(bookEditon);
-                _db.SaveChanges();
+                _bookEditonServices.Create(bookEditon);
+                //_db.BookEditons.Add(bookEditon);
+                //_db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -86,7 +90,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = _db.Books.Find(id);
+            Book book = _bookServices.GetById(id);//_db.Books.Find(id);
             if (book == null)
             {
                 return HttpNotFound();
@@ -101,8 +105,9 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(book).State = EntityState.Modified;
-                _db.SaveChanges();
+                _bookServices.Update(book);
+                //_db.Entry(book).State = EntityState.Modified;
+                //_db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(book);
@@ -115,7 +120,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = _db.Books.Find(id);
+            Book book = _bookServices.GetById(id);//_db.Books.Find(id));
             if (book == null)
             {
                 return HttpNotFound();
@@ -128,19 +133,13 @@ namespace BookCompanyManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Book book = _db.Books.Find(id);
-            _db.Books.Remove(book);
-            _db.SaveChanges();
+            _bookServices.Delete(id);
+            //Book book = _db.Books.Find(id);
+            //_db.Books.Remove(book);
+            //_db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }

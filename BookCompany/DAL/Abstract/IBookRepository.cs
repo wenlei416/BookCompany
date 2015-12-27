@@ -5,7 +5,7 @@ namespace BookCompanyManagement.DAL.Abstract
 {
     public interface IBookRepository : IRepository<Book>
     {
-        Book GetById(int bookId);
+        Book GetById(int? bookId);
     
     }
 }

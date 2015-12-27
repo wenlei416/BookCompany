@@ -9,9 +9,9 @@ namespace BookCompanyManagement.Services.Interface
 
         void Update(BookCompany instance);
 
-        void Delete(int bookCompanId);
+        void Delete(int bookCompanyId);
 
-        BookCompany GetById(int bookCompanId);
+        BookCompany GetById(int? bookCompanyId);
 
         IEnumerable<BookCompany> GetAll();
 

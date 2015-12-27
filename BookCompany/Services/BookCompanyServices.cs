@@ -24,16 +24,16 @@ namespace BookCompanyManagement.Services
             _bookCompanyRepository.Update(instance);
         }
 
-        public void Delete(int bookCompanId)
+        public void Delete(int bookCompanyId)
         {
-            BookCompany bookCompany = _bookCompanyRepository.GetById(bookCompanId);
+            BookCompany bookCompany = _bookCompanyRepository.GetById(bookCompanyId);
             _bookCompanyRepository.Delete(bookCompany);
         }
 
 
-        public BookCompany GetById(int bookCompanId)
+        public BookCompany GetById(int? bookCompanyId)
         {
-            return _bookCompanyRepository.GetById(bookCompanId); //_db.BookCompany.Find(bookCompanId));
+            return _bookCompanyRepository.GetById(bookCompanyId); //_db.BookCompany.Find(bookCompanId));
         }
 
         public IEnumerable<BookCompany> GetAll()

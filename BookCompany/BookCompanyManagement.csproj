@@ -181,12 +181,14 @@
     <Compile Include="Controllers\PaperSpecsController.cs" />
     <Compile Include="Controllers\PrintShopsController.cs" />
     <Compile Include="DAL\Abstract\IBookCompanyRepository.cs" />
+    <Compile Include="DAL\Abstract\IBookEditonRepository.cs" />
     <Compile Include="DAL\Abstract\IBookRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermakingOrderRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermillRepository.cs" />
     <Compile Include="DAL\Abstract\IRepository.cs" />
     <Compile Include="DAL\BCContext.cs" />
     <Compile Include="DAL\BookCompanyRepository.cs" />
+    <Compile Include="DAL\BookEditonRepository.cs" />
     <Compile Include="DAL\BookRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\PapermakingOrderRepository.cs" />
@@ -280,10 +282,12 @@
     <Compile Include="Models\Printshop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BookCompanyServices.cs" />
+    <Compile Include="Services\BookEditonServices.cs" />
     <Compile Include="Services\BookInstockServices.cs" />
     <Compile Include="Services\BookServices.cs" />
     <Compile Include="Services\BookPrintOrderServices.cs" />
     <Compile Include="Services\Interface\IBookCompanyServices.cs" />
+    <Compile Include="Services\Interface\IBookEditonServices.cs" />
     <Compile Include="Services\Interface\IBookServices.cs" />
     <Compile Include="Services\PaperInstockServices.cs" />
     <Compile Include="Services\PaperMakingOrderServices.cs" />

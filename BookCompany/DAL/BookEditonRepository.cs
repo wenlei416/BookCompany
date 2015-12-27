@@ -7,11 +7,11 @@ using BookCompanyManagement.Models;
 
 namespace BookCompanyManagement.DAL
 {
-    public class BookCompanyRepository:GenericRepository<BookCompany>,IBookCompanyRepository
+    public class BookEditonRepository:GenericRepository<BookEditon>, IBookEditonRepository
     {
-        public BookCompany GetById(int? bookCompanyId)
+        public BookEditon GetById(int? bookEditonId)
         {
-            return this.Get(b => b.BookCompanyId == bookCompanyId);
+            return this.Get(e => e.BookEditonId == bookEditonId);
         }
     }
 }
