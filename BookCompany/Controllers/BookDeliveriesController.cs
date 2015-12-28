@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Controllers
 {
     public class BookDeliveriesController : Controller
     {
         private BcContext db = new BcContext();
+        private readonly IBookDeliveryServices _bookDeliveryServices=new BookDeliveryServices();
 
         // GET: BookDeliveries
         public ActionResult Index()
         {
-            var bookDeliveries = db.BookDeliveries.Include(b => b.BookPrintOrder);
+            var bookDeliveries = _bookDeliveryServices.GetAll().AsQueryable().Include(b => b.BookPrintOrder);//db.BookDeliveries.Include(b => b.BookPrintOrder);
             return View(bookDeliveries.ToList());
         }
 
@@ -29,7 +28,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookDelivery bookDelivery = db.BookDeliveries.Find(id);
+            BookDelivery bookDelivery = _bookDeliveryServices.GetById(id);//db.BookDeliveries.Find(id);
             if (bookDelivery == null)
             {
                 return HttpNotFound();
@@ -45,16 +44,15 @@ namespace BookCompanyManagement.Controllers
         }
 
         // POST: BookDeliveries/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BookDeliveryId,DeliveryType,DeliveryDate,DeliveryQuantily,DeliveryAddress,DeliveryContact,BookPrintOrderId")] BookDelivery bookDelivery)
         {
             if (ModelState.IsValid)
             {
-                db.BookDeliveries.Add(bookDelivery);
-                db.SaveChanges();
+                //db.BookDeliveries.Add(bookDelivery);
+                //db.SaveChanges();
+                _bookDeliveryServices.Create(bookDelivery);
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +67,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookDelivery bookDelivery = db.BookDeliveries.Find(id);
+            BookDelivery bookDelivery = _bookDeliveryServices.GetById(id);//db.BookDeliveries.Find(id);
             if (bookDelivery == null)
             {
                 return HttpNotFound();
@@ -87,8 +85,9 @@ namespace BookCompanyManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bookDelivery).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(bookDelivery).State = EntityState.Modified;
+                //db.SaveChanges();
+                _bookDeliveryServices.Update(bookDelivery);
                 return RedirectToAction("Index");
             }
             ViewBag.BookPrintOrderId = new SelectList(db.BookPrintOrders, "BookPrintOrderId", "BookPrintOrderName", bookDelivery.BookPrintOrderId);
@@ -102,7 +101,7 @@ namespace BookCompanyManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookDelivery bookDelivery = db.BookDeliveries.Find(id);
+            BookDelivery bookDelivery = _bookDeliveryServices.GetById(id);//db.BookDeliveries.Find(id);
             if (bookDelivery == null)
             {
                 return HttpNotFound();
@@ -115,9 +114,10 @@ namespace BookCompanyManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BookDelivery bookDelivery = db.BookDeliveries.Find(id);
-            db.BookDeliveries.Remove(bookDelivery);
-            db.SaveChanges();
+            //BookDelivery bookDelivery = db.BookDeliveries.Find(id);
+            //db.BookDeliveries.Remove(bookDelivery);
+            //db.SaveChanges();
+            _bookDeliveryServices.Delete(id);
             return RedirectToAction("Index");
         }
 

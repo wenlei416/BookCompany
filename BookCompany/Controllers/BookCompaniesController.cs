@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
 using BookCompanyManagement.Services;
 using BookCompanyManagement.Services.Interface;
@@ -15,7 +8,6 @@ namespace BookCompanyManagement.Controllers
 {
     public class BookCompaniesController : Controller
     {
-        private readonly BcContext _db = new BcContext();
         private readonly IBookCompanyServices _bookCompanyServices;
 
         public BookCompaniesController()
@@ -124,14 +116,7 @@ namespace BookCompanyManagement.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+  
 
         // GET: BookCompanies/stocks
         public ActionResult Stocks()
