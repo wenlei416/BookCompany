@@ -1,13 +1,17 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using BookCompanyManagement.DAL;
+using BookCompanyManagement.DAL.Abstract;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Services
 {
-    public class PaperInstockServices
+    public class PaperInstockServices : IPaperInstockServices
     {
         private readonly BcContext _db = new BcContext();
+        private readonly IPaperInstockRepository _paperInstockRepository = new PaperInstockRepository();
         //todo:把数据操作抽象成服务
 
         /// <summary>
@@ -91,6 +95,32 @@ namespace BookCompanyManagement.Services
                     _db.SaveChanges();
                 }
             }
+        }
+
+        public void Create(PaperInstock instance)
+        {
+            _paperInstockRepository.Create(instance);
+        }
+
+        public void Update(PaperInstock instance)
+        {
+            _paperInstockRepository.Update(instance);
+        }
+
+        public void Delete(int paperInstockId)
+        {
+            var p = _paperInstockRepository.GetById(paperInstockId);
+            _paperInstockRepository.Delete(p);
+        }
+
+        public PaperInstock GetById(int? paperInstockId)
+        {
+            return _paperInstockRepository.GetById(paperInstockId);
+        }
+
+        public IEnumerable<PaperInstock> GetAll()
+        {
+            return _paperInstockRepository.GetAll();
         }
     }
 }

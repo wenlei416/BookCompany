@@ -10,7 +10,6 @@ using BookCompanyManagement.DAL;
 using BookCompanyManagement.Models;
 using BookCompanyManagement.Services;
 using BookCompanyManagement.Services.Interface;
-using Ninject.Infrastructure.Language;
 
 namespace BookCompanyManagement.Controllers
 {

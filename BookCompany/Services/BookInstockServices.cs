@@ -4,13 +4,42 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using BookCompanyManagement.DAL;
+using BookCompanyManagement.DAL.Abstract;
 using BookCompanyManagement.Models;
+using BookCompanyManagement.Services.Interface;
 
 namespace BookCompanyManagement.Services
 {
-    public class BookInstockServices
+    public class BookInstockServices:IBookInstockServices
     {
+        readonly IBookInstockRepository _bookInstockRepository=new BookInstockRepository();
         private readonly BcContext _db = new BcContext();
+
+        public void Create(BookInstock instance)
+        {
+            _bookInstockRepository.Create(instance);
+        }
+
+        public void Update(BookInstock instance)
+        {
+            _bookInstockRepository.Update(instance);
+        }
+
+        public void Delete(int bookInstockId)
+        {
+            var b = _bookInstockRepository.GetById(bookInstockId);
+            _bookInstockRepository.Delete(b);
+        }
+
+        public BookInstock GetById(int? bookInstockId)
+        {
+            return _bookInstockRepository.GetById(bookInstockId);
+        }
+
+        public IEnumerable<BookInstock> GetAll()
+        {
+            return _bookInstockRepository.GetAll();
+        }
 
         public void AddBookMount(int bookPrintOrderId)
         {

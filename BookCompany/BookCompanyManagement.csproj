@@ -183,7 +183,9 @@
     <Compile Include="DAL\Abstract\IBookDeliveryRepository.cs" />
     <Compile Include="DAL\Abstract\IBookCompanyRepository.cs" />
     <Compile Include="DAL\Abstract\IBookEditonRepository.cs" />
+    <Compile Include="DAL\Abstract\IBookInstockRepository.cs" />
     <Compile Include="DAL\Abstract\IBookRepository.cs" />
+    <Compile Include="DAL\Abstract\IPaperInstockRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermakingOrderRepository.cs" />
     <Compile Include="DAL\Abstract\IPapermillRepository.cs" />
     <Compile Include="DAL\Abstract\IRepository.cs" />
@@ -191,8 +193,10 @@
     <Compile Include="DAL\BookCompanyRepository.cs" />
     <Compile Include="DAL\BookDeliveryRepository.cs" />
     <Compile Include="DAL\BookEditonRepository.cs" />
+    <Compile Include="DAL\BookInstockRepository.cs" />
     <Compile Include="DAL\BookRepository.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
+    <Compile Include="DAL\PaperInstockRepository.cs" />
     <Compile Include="DAL\PapermakingOrderRepository.cs" />
     <Compile Include="DAL\PapermillRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,7 +296,9 @@
     <Compile Include="Services\Interface\IBookCompanyServices.cs" />
     <Compile Include="Services\Interface\IBookDeliveryService.cs" />
     <Compile Include="Services\Interface\IBookEditonServices.cs" />
+    <Compile Include="Services\Interface\IBookInstockServices.cs" />
     <Compile Include="Services\Interface\IBookServices.cs" />
+    <Compile Include="Services\Interface\IPaperInstockServices.cs" />
     <Compile Include="Services\Interface\IPaperMakingOrderServices.cs" />
     <Compile Include="Services\PaperInstockServices.cs" />
     <Compile Include="Services\PaperMakingOrderServices.cs" />

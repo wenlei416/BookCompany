@@ -139,7 +139,73 @@
         </dd>
 
     </dl>
+
 </div>
+
+<div>
+    <h4>PaperNeed</h4>
+
+    <table class="table">
+        <tr>
+
+            <th>
+                项目
+            </th>
+
+            <th>
+                纸张名称
+            </th>
+            <th>
+                开纸
+            </th>
+            <th>
+                用料
+            </th>
+            <th>
+                加放
+            </th>
+            <th>
+                工艺
+            </th>
+
+            <th>
+                合计
+            </th>
+        </tr>
+
+        @foreach (var item in Model.PaperNeeds)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PageType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paper.PaperName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperFormat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Need)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperWastage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Technological)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperNeedMount)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookPrintOrderId }) |
     @Html.ActionLink("Back to List", "Index")
