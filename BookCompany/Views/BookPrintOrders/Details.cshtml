@@ -122,21 +122,7 @@
             @Html.DisplayFor(model => model.Plasticpackage)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Normalpackage)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Normalpackage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Railpackage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Railpackage)
-        </dd>
 
     </dl>
 
@@ -144,7 +130,6 @@
 
 <div>
     <h4>PaperNeed</h4>
-
     <table class="table">
         <tr>
 
@@ -201,9 +186,93 @@
         }
 
     </table>
+</div>
 
+<div>
+    <h4>makeup</h4>
+    <table class="table">
+        <tr>
+            <th>
+                分类
+            </th>
+            <th>
+                名称
+            </th>
+            <th>
+                总数
+            </th>
+        </tr>
+        @foreach (var item in Model.Makeups)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MakeupType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MakeupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+        </tr>
+        }
+    </table>
+</div>
 
+<div>
+    <h4>打包</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Normalpackage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Railpackage)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Normalpackage)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Railpackage)
+            </td>
+        </tr>
 
+    </table>
+</div>
+<div>
+    <h4>bookDelivery</h4>
+    <table class="table">
+        <tr>
+            <th>书DeliveryType</th>
+            <th>送货时间DeliveryDate</th>
+            <th>数量/本DeliveryQuantily</th>
+            <th>交货地点DeliveryAddress</th>
+            <th>联系人DeliveryContact</th>
+        </tr>
+        @foreach (var item in Model.BookDeliverys)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryQuantily)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryContact)
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 
 <p>

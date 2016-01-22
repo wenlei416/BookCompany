@@ -103,6 +103,9 @@ namespace BookCompanyManagement.Controllers
             ViewBag.BookCompanyId = new SelectList(_db.BookCompany, "BookCompanyId", "BookCompanyName", bookPrintOrder.BookCompanyId);
             ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookPrintOrder.BookEditonId);
             ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookPrintOrder.PrintShopId);
+
+            //todo  这里要改很多
+            ViewBag.PaperList = _db.Printshop;
             return View(bookPrintOrder);
         }
 
