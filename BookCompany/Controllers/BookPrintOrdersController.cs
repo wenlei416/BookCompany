@@ -89,6 +89,7 @@ namespace BookCompanyManagement.Controllers
         }
 
         // GET: BookPrintOrders/Edit/5
+        //todo 增加减少各个子对象，同时可以保存
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -104,18 +105,32 @@ namespace BookCompanyManagement.Controllers
             ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookPrintOrder.BookEditonId);
             ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookPrintOrder.PrintShopId);
 
-            //todo  这里要改很多
-            ViewBag.PaperList = _db.Printshop;
+            ViewBag.PaperList = from p in _db.PaperInstcok
+                                where (p.PrintShopId == bookPrintOrder.PrintShopId)
+                                select new { PaperId = p.PaperId, PaperName = p.Paper.PaperName };
             return View(bookPrintOrder);
         }
 
         // POST: BookPrintOrders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookPrintOrderId,BookPrintOrderName,BookPrintMount,OrderStatus,CreateDateTime,CopmleteDateTime,BookEditonId,BookCompanyId,PrintShopId,PrintNo,PageFormat,PageSize,Printsheet,Bookbinding,Plasticpackage,Normalpackage,Railpackage")] BookPrintOrder bookPrintOrder)
+        public ActionResult Edit(BookPrintOrder bookPrintOrder)
         {
             if (ModelState.IsValid)
             {
+                foreach (var p in bookPrintOrder.PaperNeeds)
+                {
+                    _db.Entry(p).State = EntityState.Modified;
+                }
+                foreach (var m in bookPrintOrder.Makeups)
+                {
+                    _db.Entry(m).State = EntityState.Modified;
+                }
+                foreach (var d in bookPrintOrder.BookDeliverys)
+                {
+                    _db.Entry(d).State = EntityState.Modified;
+                }
+
                 _db.Entry(bookPrintOrder).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,6 +138,11 @@ namespace BookCompanyManagement.Controllers
             ViewBag.BookCompanyId = new SelectList(_db.BookCompany, "BookCompanyId", "BookCompanyName", bookPrintOrder.BookCompanyId);
             ViewBag.BookEditonId = new SelectList(_db.BookEditons, "BookEditonId", "BookName", bookPrintOrder.BookEditonId);
             ViewBag.PrintShopId = new SelectList(_db.Printshop, "PrintShopId", "PrintShopName", bookPrintOrder.PrintShopId);
+
+            ViewBag.PaperList = from p in _db.PaperInstcok
+                                where (p.PrintShopId == bookPrintOrder.PrintShopId)
+                                select new { PaperId = p.PaperId, PaperName = p.Paper.PaperName };
+
             return View(bookPrintOrder);
         }
 

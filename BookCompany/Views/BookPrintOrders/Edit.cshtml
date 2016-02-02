@@ -2,10 +2,10 @@
 @model BookCompanyManagement.Models.BookPrintOrder
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "修改印制单";
 }
 
-<h2>Edit</h2>
+<h2>修改印制单</h2>
 
 
 @using (Html.BeginForm())
@@ -136,73 +136,75 @@
             <div class="row">
                 <h4>用纸</h4>
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 @for (int i = 0; i < Model.PaperNeeds.Count; i++)
                 {
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].PageType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "项目")
-                    <div class="col-md-10">
-                        @Html.DropDownList("PaperNeeds[" + i + "].PageType", EnumHelper.GetSelectList(typeof(PageType), Model.PaperNeeds.ToArray()[i].PageType), htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_" + i + "__PageType", @name = "PaperNeeds[" + i + "].PageType" })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].PageType", "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                    @Html.Hidden("PaperNeeds[" + i + "].PaperNeedId", Model.PaperNeeds.ToArray()[i].PaperNeedId)
+                    @Html.Hidden("PaperNeeds[" + i + "].BookPrintOrderId", Model.PaperNeeds.ToArray()[i].BookPrintOrderId)
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].PaperId", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "纸张名称")
-                    <div class="col-md-10">
-                        @Html.DropDownList("PaperId", new SelectList(ViewBag.PaperList, "PrintShopId", "PrintShopName", Model.PrintShopId), htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_" + i + "__PaperId", @name = "PaperNeeds[" + i + "].PaperId" })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].PaperId", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].PageType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "项目")
+                        <div class="col-md-10">
+                            @Html.DropDownList("PaperNeeds[" + i + "].PageType", EnumHelper.GetSelectList(typeof(PageType), Model.PaperNeeds.ToArray()[i].PageType), htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_" + i + "__PageType", @name = "PaperNeeds[" + i + "].PageType" })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].PageType", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].PaperFormat", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "开纸")
-                    <div class="col-md-10">
-                        @Html.Editor("PaperNeeds[" + i + "].PaperFormat", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperFormat } })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].PaperFormat", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].PaperId", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "纸张名称")
+                        <div class="col-md-10">
+                            @Html.DropDownList("PaperNeeds[" + i + "].PaperId", new SelectList(ViewBag.PaperList, "PaperId", "PaperName", Model.PaperNeeds.ToArray()[i].PaperId), htmlAttributes: new { @class = "form-control", @id = "PaperNeeds_" + i + "__PaperId", @name = "PaperNeeds[" + i + "].PaperId" })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].PaperId", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].Need", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "用料")
-                    <div class="col-md-10">
-                        @Html.Editor("PaperNeeds[" + i + "].Need", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].Need } })
-                        @*@Html.EditorFor(m=>m.PaperNeeds.ToArray()[0].Need,new { htmlAttributes = new { @class = "form-control"} })*@
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].Need", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].PaperFormat", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "开纸")
+                        <div class="col-md-10">
+                            @Html.Editor("PaperNeeds[" + i + "].PaperFormat", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperFormat } })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].PaperFormat", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].PaperWastage", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "加放")
-                    <div class="col-md-10">
-                        @Html.Editor("PaperNeeds[" + i + "].PaperWastage", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperWastage } })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].PaperWastage", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].Need", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "用料")
+                        <div class="col-md-10">
+                            @Html.Editor("PaperNeeds[" + i + "].Need", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].Need } })
+                            @*@Html.EditorFor(m=>m.PaperNeeds.ToArray()[0].Need,new { htmlAttributes = new { @class = "form-control"} })*@
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].Need", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].Technological", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "工艺")
-                    <div class="col-md-10">
-                        @Html.Editor("PaperNeeds[" + i + "].Technological", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].Technological } })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].Technological", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].PaperWastage", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "加放")
+                        <div class="col-md-10">
+                            @Html.Editor("PaperNeeds[" + i + "].PaperWastage", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperWastage } })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].PaperWastage", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.Label("PaperNeeds[" + i + "].PaperNeedMount", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "合计")
-                    <div class="col-md-10">
-                        @Html.Editor("PaperNeeds[" + i + "].PaperNeedMount", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperNeedMount } })
-                        @Html.ValidationMessage("PaperNeeds[" + i + "].PaperNeedMount", "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].Technological", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "工艺")
+                        <div class="col-md-10">
+                            @Html.Editor("PaperNeeds[" + i + "].Technological", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].Technological } })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].Technological", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <a href="#" class="postfix button dynamicRemove">减少</a>
-                        <a href="#" class="postfix button dynamicAdd">增加</a>
+                    <div class="form-group">
+                        @Html.Label("PaperNeeds[" + i + "].PaperNeedMount", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "合计")
+                        <div class="col-md-10">
+                            @Html.Editor("PaperNeeds[" + i + "].PaperNeedMount", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.PaperNeeds.ToArray()[i].PaperNeedMount } })
+                            @Html.ValidationMessage("PaperNeeds[" + i + "].PaperNeedMount", "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a href="#" class="postfix button dynamicRemove">减少</a>
+                            <a href="#" class="postfix button dynamicAdd">增加</a>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -213,36 +215,39 @@
                 <hr />
                 @for (int i = 0; i < Model.Makeups.Count; i++)
                 {
-                    <div class="form-group">
-                        @Html.Label("Makeups[" + i + "].MakeupType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "分类")
-                        <div class="col-md-10">
-                            @Html.DropDownList("Makeups[" + i + "].MakeupType", EnumHelper.GetSelectList(typeof(MakeupType), Model.Makeups.ToArray()[i].MakeupType), htmlAttributes: new { @class = "form-control", @id = "Makeups_" + i + "__MakeupType", @name = "Makeups[" + i + "].MakeupType" })
-                            @Html.ValidationMessage("Makeups[" + i + "].MakeupType", "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                @Html.Hidden("Makeups[" + i + "].MakeupId", Model.Makeups.ToArray()[i].MakeupId)
+                @Html.Hidden("Makeups[" + i + "].BookPrintOrderId", Model.Makeups.ToArray()[i].BookPrintOrderId)
 
-                    <div class="form-group">
-                        @Html.Label("Makeups[" + i + "].MakeupName", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "名称")
-                        <div class="col-md-10">
-                            @Html.Editor("Makeups[" + i + "].MakeupName", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.Makeups.ToArray()[i].MakeupName } })
-                            @Html.ValidationMessage("Makeups[" + i + "].MakeupName", "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group">
+                    @Html.Label("Makeups[" + i + "].MakeupType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "分类")
+                    <div class="col-md-10">
+                        @Html.DropDownList("Makeups[" + i + "].MakeupType", EnumHelper.GetSelectList(typeof(MakeupType), Model.Makeups.ToArray()[i].MakeupType), htmlAttributes: new { @class = "form-control", @id = "Makeups_" + i + "__MakeupType", @name = "Makeups[" + i + "].MakeupType" })
+                        @Html.ValidationMessage("Makeups[" + i + "].MakeupType", "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        @Html.Label("Makeups[" + i + "].Count", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "总数")
-                        <div class="col-md-10">
-                            @Html.Editor("Makeups[" + i + "].Count", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.Makeups.ToArray()[i].Count } })
-                            @Html.ValidationMessage("Makeups[" + i + "].Count", "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group">
+                    @Html.Label("Makeups[" + i + "].MakeupName", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "名称")
+                    <div class="col-md-10">
+                        @Html.Editor("Makeups[" + i + "].MakeupName", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.Makeups.ToArray()[i].MakeupName } })
+                        @Html.ValidationMessage("Makeups[" + i + "].MakeupName", "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <a href="#" class="postfix button dynamicRemove">减少</a>
-                            <a href="#" class="postfix button dynamicAdd">增加</a>
-                        </div>
+                <div class="form-group">
+                    @Html.Label("Makeups[" + i + "].Count", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "总数")
+                    <div class="col-md-10">
+                        @Html.Editor("Makeups[" + i + "].Count", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.Makeups.ToArray()[i].Count } })
+                        @Html.ValidationMessage("Makeups[" + i + "].Count", "", new { @class = "text-danger" })
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="postfix button dynamicRemove">减少</a>
+                        <a href="#" class="postfix button dynamicAdd">增加</a>
+                    </div>
+                </div>
                 }
             </div>
         </div>
@@ -273,10 +278,14 @@
                 <hr />
                 @for (int i = 0; i < Model.BookDeliverys.Count; i++)
                 {
+                    @Html.Hidden("BookDeliverys[" + i + "].BookDeliveryId", Model.BookDeliverys.ToArray()[i].BookDeliveryId)
+                    @Html.Hidden("BookDeliverys[" + i + "].BookPrintOrderId", Model.BookDeliverys.ToArray()[i].BookPrintOrderId)
+
+
                     <div class="form-group">
                         @Html.Label("BookDeliverys[" + i + "].DeliveryType", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "书")
                         <div class="col-md-10">
-                            @Html.DropDownList("DeliveryType", EnumHelper.GetSelectList(typeof(BookDeliveryType),Model.BookDeliverys.ToArray()[i].DeliveryType), htmlAttributes: new { @class = "form-control", @id = "BookDeliverys_" + i + "__DeliveryType", @name = "BookDeliverys[" + i + "].DeliveryType" })
+                            @Html.DropDownList("DeliveryType", EnumHelper.GetSelectList(typeof(BookDeliveryType), Model.BookDeliverys.ToArray()[i].DeliveryType), htmlAttributes: new { @class = "form-control", @id = "BookDeliverys_" + i + "__DeliveryType", @name = "BookDeliverys[" + i + "].DeliveryType" })
                             @Html.ValidationMessage("BookDeliverys[" + i + "].DeliveryType", "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -284,7 +293,7 @@
                     <div class="form-group">
                         @Html.Label("BookDeliverys[" + i + "].DeliveryDate", htmlAttributes: new { @class = "control-label col-md-2" }, labelText: "送货时间")
                         <div class="col-md-10">
-                            @Html.Editor("BookDeliverys[" + i + "].DeliveryDate", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.BookDeliverys.ToArray()[i].DeliveryDate.ToShortDateString(), @type = "date" } })
+                            @Html.Editor("BookDeliverys[" + i + "].DeliveryDate", new { htmlAttributes = new { @class = "form-control valid", @Value = Model.BookDeliverys.ToArray()[i].DeliveryDate.ToString("yyyy-MM-dd"), @type = "date" } })
                             @Html.ValidationMessage("BookDeliverys[" + i + "].DeliveryDate", "", new { @class = "text-danger" })
                         </div>
                     </div>
